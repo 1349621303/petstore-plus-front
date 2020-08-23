@@ -1,22 +1,72 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import Test1 from "../views/Test1";
+import Cart from "../views/Cart";
+import Category from "../views/Category";
+import Product from "../views/Product";
+import Main from "../views/Main";
+import Item from "../views/Item";
+import userinfo from "../views/userinfo";
+
+import Test3 from "../views/Test3";
+import Test2 from "../views/Test2";
+
+
+import Order from "../views/Order";
 
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/login',
+    name: 'Login',
+    component: Login,
+      hidden:true
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+   path: '/userinfo',
+   name: 'userinfo',
+   component: userinfo
+  },
+
+      {
+          path: '/test3',
+          name: 'Test3',
+          component: Test3
+      },
+      {
+          path: '/test2',
+          name: 'Test2',
+          component: Test2
+      },
+      {
+      path: '/',
+      name: 'Main',
+      component: Main,
+      children:[
+          {
+              path: 'main',
+              name: 'Category',
+              component: Category
+          }, {
+              path: '/test1',
+              name: 'Test1',
+              component: Test1
+          }, {
+              path: 'product/:categoryId',
+              name: 'Product',
+              component: Product
+          }, {
+              path: 'item/:productId',
+              name: 'Item',
+              component: Item
+          },{
+              path: 'order/:itemId',
+              name: 'Order',
+              component: Order
+          }
+      ]
   }
 ]
 
