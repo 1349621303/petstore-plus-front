@@ -12,6 +12,8 @@ import userinfo from "../views/userinfo";
 import Test3 from "../views/Test3";
 import Test2 from "../views/Test2";
 
+import OrderList from "../views/OrderList";
+
 
 import Order from "../views/Order";
 
@@ -46,7 +48,7 @@ Vue.use(VueRouter)
       component: Main,
       children:[
           {
-              path: 'main',
+              path: '/main',
               name: 'Category',
               component: Category
           }, {
@@ -65,6 +67,14 @@ Vue.use(VueRouter)
               path: 'order/:itemId',
               name: 'Order',
               component: Order
+          },{
+              path: '/cart',
+              name: 'Cart',
+              component: Cart
+          },{
+              path: '/orderlist',
+              name: 'OrderList',
+              component: OrderList
           }
       ]
   }

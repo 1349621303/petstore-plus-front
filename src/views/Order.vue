@@ -15,7 +15,7 @@
 
         <div v-if="show1">
 
-            <el-input placeholder="" v-model="cartItem.itemid" :disabled="true">
+            <el-input placeholder="" v-model="cartItem.itemid" :disabled="true" style="width: 300px;">
                 <template slot="prepend">商品编号</template>
             </el-input>
 
@@ -24,7 +24,6 @@
 
 
         <div v-if="show2">
-            这是第二页
             <el-form :disabled="committed" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px" class="demo-ruleForm">
                 <el-row :gutter="40" type="flex" justify="center">
                     <el-col :span="10">
@@ -120,7 +119,7 @@
 
 
         <div v-if="show3">
-            这是第三页
+            这是第三页——————调用支付宝接口...
         </div>
 
         <div>
@@ -353,11 +352,11 @@
                         }
                         this.committed = true;
 
-                        orders.userid='admin';
+                        orders.userid='j2ee';
                         orders.billaddr1=this.ruleForm.billaddr1;
 
 
-                        alert(JSON.stringify(orders));
+                        // alert(JSON.stringify(orders));
 
                         this.postRequest('/newOrders/',orders).then(resp => {
                             if (resp) {

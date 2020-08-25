@@ -42,8 +42,10 @@
                 this.$router.push(index);
             },
             initPositions() {
+                //alert(JSON.stringify(this.$route.params.categoryId))
                 this.getRequest("/getProductListByCategory/"+this.$route.params.categoryId).then(resp => {
                     if (resp) {
+                        // alert(JSON.stringify(resp.obj))
                         this.products = resp.obj;
                     }
                 })

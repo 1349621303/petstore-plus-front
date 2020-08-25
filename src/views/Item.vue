@@ -52,7 +52,7 @@
                         width="120">
                 </el-table-column>
 
-                <el-table-column label="操作">
+                <el-table-column label="操作" fixed="right" width="150">
                     <template slot-scope="scope">
                         <el-button
                                 size="mini"
@@ -65,11 +65,11 @@
             <el-dialog :visible.sync="dialogFormVisible">
                 <el-form :model="form">
                     <el-form-item label="商品编号" :label-width="formLabelWidth">
-                        <el-input v-model="form.itemId" autocomplete="off" :disabled="true"></el-input>
+                        <el-input v-model="form.itemId" autocomplete="off" :disabled="true" style="width: 300px;"></el-input>
                     </el-form-item>
 
                     <el-form-item label="库存剩余" :label-width="formLabelWidth">
-                        <el-input v-model="form.itemQty" autocomplete="off" :disabled="true"></el-input>
+                        <el-input v-model="form.itemQty" autocomplete="off" :disabled="true" style="width: 300px;"></el-input>
                     </el-form-item>
 
                     <el-form-item label="选择数量" :label-width="formLabelWidth">
@@ -77,11 +77,11 @@
                     </el-form-item>
 
                     <el-form-item label="商品价格" :label-width="formLabelWidth">
-                        <el-input v-model="form.itemListprice" autocomplete="off" :disabled="true"></el-input>
+                        <el-input v-model="form.itemListprice" autocomplete="off" :disabled="true" style="width: 300px;"></el-input>
                     </el-form-item>
 
                     <el-form-item label="总金额" :label-width="formLabelWidth">
-                        <el-input v-model="form.totalMoney" autocomplete="off" :disabled="true"></el-input>
+                        <el-input v-model="form.totalMoney" autocomplete="off" :disabled="true" style="width: 300px;"></el-input>
                     </el-form-item>
 
                 </el-form>
@@ -148,15 +148,13 @@
             initItemList() {
                 this.getRequest("/getItemListByProduct/"+this.$route.params.productId).then(resp => {
                     if (resp) {
-                         alert(JSON.stringify(resp.obj))
+                        // alert(JSON.stringify(resp.obj))
                         this.items = resp.obj;
                     }
                 })
             },
             addBuy(){
-                //add to cart
-
-                this.cart.userid='admin';
+                this.cart.userid='j2ee';
                 this.cart.itemid=this.item.itemid;
                 this.cart.productid=this.item.productid;
                 this.cart.name=this.item.attr1;
@@ -172,11 +170,6 @@
                         this.cart = resp.obj;
                     }
                 })
-
-                //跳转到order页面
-
-
-
             },
             addCart(){
                 this.dialogFormVisible = false;
@@ -211,5 +204,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
