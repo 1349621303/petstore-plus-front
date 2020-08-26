@@ -68,6 +68,14 @@
             </el-table-column>
         </el-table>
 
+        <el-pagination
+                background
+                @current-change="currentChange"
+                @size-change="sizeChange"
+                layout="sizes, prev, pager, next, jumper, ->, total, slot"
+                :total="total">
+        </el-pagination>
+
         <el-dialog title="收货地址" :visible.sync="dialogTableVisible" append-to-body>
             <el-table :data="lineitems">
                 <el-table-column property="orderid" prop="orderid" label="订单编号" width="150"></el-table-column>
@@ -79,6 +87,8 @@
 
             </el-table>
         </el-dialog>
+
+
     </div>
     
 </template>
@@ -90,6 +100,9 @@
             return {
                 orders:[],
                 lineitems:[],
+                total: 0,
+                page: 1,
+                size: 10,
                 dialogTableVisible: false
             }
         },
@@ -114,7 +127,15 @@
                         this.lineitems = resp.obj;
                     }
                 })
-            }
+            },
+            sizeChange(currentSize) {
+                this.size = currentSize;
+                this.initOrderList();
+            },
+            currentChange(currentPage) {
+                this.page = currentPage;
+                this.initOrderList();
+            },
         }
     }
 </script>

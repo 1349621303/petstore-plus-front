@@ -16,7 +16,7 @@
                         <el-menu-item index="/main">宠物商城</el-menu-item>
                         <el-menu-item index="/cart" >购物车</el-menu-item>
                         <el-menu-item index="/orderlist">我的订单</el-menu-item>
-                        <el-menu-item index="/message">消息通知</el-menu-item>
+                        <el-menu-item index="/login">退出登录</el-menu-item>
                     </el-menu>
                 </div>
             </el-header>
@@ -50,7 +50,20 @@
 
 <script>
     export default {
-        name: "Header"
+        name: "Header",
+        methods: {
+            handleSelect(index,indexPath) {
+                if (indexPath=='/login') {
+                    this.deleteRequest("/signOut/").then(resp => {
+                        if (resp) {
+                            this.$message.error(resp.msg);
+                        }
+                    })
+                }
+
+
+            }
+        }
     }
 </script>
 

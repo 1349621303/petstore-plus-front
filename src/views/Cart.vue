@@ -79,8 +79,10 @@
 
             }
         },
-
         // 数据初始化一般放到 mounted 函数中
+        // mounted() {
+        //     this.initCartList();
+        // },
         mounted() {
             this.initCartList();
         },
@@ -137,9 +139,15 @@
 
             initCartList() {
                 this.getRequest("/getCartList").then(resp => {
+
+                    alert(JSON.stringify(resp));
                     if (resp) {
-                        //alert(JSON.stringify(resp.obj));
+                        alert(JSON.stringify(resp));
                         this.CartList = resp.obj;
+                    } else {
+                        alert("error");
+                        this.$message.error(resp.msg);
+                        this.$router.replace('/login')
                     }
                 })
             },

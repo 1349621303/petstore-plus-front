@@ -26,6 +26,7 @@ Vue.use(VueRouter)
     component: Login,
       hidden:true
   },
+
   {
    path: '/userinfo',
    name: 'userinfo',

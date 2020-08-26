@@ -7,7 +7,7 @@
                 class="loginContainer">
             <h3 class="loginTitle">系统登录</h3>
             <el-form-item prop="username">
-                <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="请输入用户名"></el-input>
+                <el-input type="text" v-model="loginForm.userId" auto-complete="off" placeholder="请输入用户名"></el-input>
             </el-form-item>
 
             <el-form-item prop="password">
@@ -24,22 +24,20 @@
 </template>
 
 <script>
-    import {postKeyValueRequest} from "../utils/api";
-
     export default {
         name: "Login",
         data() {
             return {
                 loading: false,
                 loginForm:{
-                    username: 'admin',
-                    password: '123'
+                    userId: 'j2ee1',
+                    password: 'j2ee'
                 },
 
                 checked:true,
 
                 rules:{
-                    username:[{required:true, message:'请输入用户名', trigger:'blur'}],
+                    userId:[{required:true, message:'请输入用户名', trigger:'blur'}],
                     password:[{required:true, message:'请输入密码', trigger:'blur'}]
                 }
             }
@@ -52,13 +50,16 @@
                 this.$refs.loginForm.validate((valid) => {
                     if (valid) {
                         this.loading = true;
-                        postKeyValueRequest('/doLogin',this.loginForm).then(resp=>{
+                        this.postRequest('/signIn/',this.loginForm).then(resp=>{
                             if (resp) {
                                 alert(JSON.stringify(resp))
-                                // 读取用户的信息
-                                // window.sessionStorage.setItem("user", JSON.stringify(resp.obj));
-                                // 在这里进行页面的跳转，跳转到 Home 页, 这里的 $router 就是 main.js 中的 router
-                                this.$router.replace('/main')
+                                if (resp.status==200) {
+                                    // window.sessionStorage.setItem("user", JSON.stringify(resp.obj));
+                                    // 在这里进行页面的跳转，跳转到 Home 页, 这里的 $router 就是 main.js 中的 router
+                                    this.$router.replace('/main')
+                                } else if(resp.status==500) {
+                                    this.$message.error(resp.msg);
+                                }
                             }
                         })
                     } else {
