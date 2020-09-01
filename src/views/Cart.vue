@@ -140,12 +140,12 @@
             initCartList() {
                 this.getRequest("/getCartList").then(resp => {
 
-                    alert(JSON.stringify(resp));
+                    // alert(JSON.stringify(resp));
                     if (resp) {
-                        alert(JSON.stringify(resp));
+                        // alert(JSON.stringify(resp));
                         this.CartList = resp.obj;
                     } else {
-                        alert("error");
+                        // alert("error");
                         this.$message.error(resp.msg);
                         this.$router.replace('/login')
                     }

@@ -13,7 +13,10 @@
                 <el-col :span="4" v-for="category in categorys" >
                     <router-link :to="'product/' + category.catid">
                         <el-card :body-style="{ padding: '0px' }">
-                            <img :src="category.descn" class="image">
+                            <!--<img :src="category.descn" class="image">-->
+                            <img :src="category.descn" alt="" style="width: 300px; height: 250px">
+
+
                             <div style="padding: 8px;">
                                 <div class="bottom clearfix">
                                     <el-link type="danger" @click="$router.push(category)" class="button">{{category.name}}</el-link>
